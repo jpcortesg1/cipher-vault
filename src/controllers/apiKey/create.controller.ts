@@ -11,6 +11,11 @@ const create = async (req: Request, res: Response) => {
     // Get data
     const data = req.body;
 
+    // Validate expireAt date
+    if (!data.expireAt) {
+      data.expireAt = Date.now() + 2 * 30 * 24 * 60 * 60 * 1000;
+    }
+
     // Create API Key
     let apiKeyWord = "";
     for (let i = 0; i < 4; i++) {

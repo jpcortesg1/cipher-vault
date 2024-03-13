@@ -7,8 +7,9 @@ import { validateSchema } from "../middlewares/schema/schema.middleware";
 import {
   createApiKeySchema,
   refreshApiKeySchema,
+  deleteApiKeySchema
 } from "../schemas/apiKey/apiKey.schema";
-import { create, refresh } from "../controllers/apiKey/apiKey.controller";
+import { create, refresh, destroy } from "../controllers/apiKey/apiKey.controller";
 import {
   emailHaveApiKey,
   existApiKeyWithEmail,
@@ -32,6 +33,14 @@ apiKeyRouter.post(
   existApiKeyWithEmail,
   refresh
 );
+
+// Delete api key route
+apiKeyRouter.delete(
+  "/",
+  (req, res, next) => validateSchema(req, res, next, deleteApiKeySchema),
+  existApiKeyWithEmail,
+  destroy
+)
 
 // Export router
 export default apiKeyRouter;

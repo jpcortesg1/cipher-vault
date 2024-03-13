@@ -21,4 +21,4 @@ EXPOSE 5000
 COPY . .
 
 # Start the app
-CMD [ "pnpm", "run", "dev_tsc"]
+CMD [ "pnpm", "run", "dev:tsc"]

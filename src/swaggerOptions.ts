@@ -47,7 +47,7 @@ const swaggerOptions: OAS3Options = {
       },
     ],
     paths: {
-      "api-key": {
+      "/api-key": {
         ...apiKeyRoute,
       },
     },
@@ -58,11 +58,11 @@ const swaggerOptions: OAS3Options = {
     },
     servers: [
       {
-        url: "https://api-chipher-vault.jpcortesg.online",
+        url: "https://api-chipher-vault.jpcortesg.online/api/v1/",
         description: "Production server",
       },
       {
-        url: "http://localhost:3000",
+        url: "http://localhost:5000/api/v1/",
         description: "Development server",
       },
     ],

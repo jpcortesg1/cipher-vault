@@ -1,13 +1,13 @@
 // Import modules
 // External
 import express from "express";
-import swaggerOptions from './swaggerOptions';
+import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 // Personal
 import router from "./routes/index.routes";
 import connectDB from "./configuration/db";
-import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerOptions from './swagger/swagger.options';
 
 // Crete app
 const app = express();
@@ -27,8 +27,8 @@ app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 5000;
 
 // Use routes
-app.use("/api/v1/", router);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api/v1/", router); // Routes of API
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec)); // Swagger documentation
 
 // Start server
 app.listen(port, () => {

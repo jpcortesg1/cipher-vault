@@ -2,6 +2,9 @@
 // External
 import { PathItem } from "swagger-jsdoc";
 
+// Personal
+import responseBase from "../response.base";
+
 // Description to swagger of path create api key
 const apiKeyCreate: PathItem = {
   post: {
@@ -13,14 +16,9 @@ const apiKeyCreate: PathItem = {
       $ref: "#/components/requestBodies/apiKeyRequestBody",
     },
     responses: {
+      ...responseBase,
       "200": {
         description: "API Key created",
-      },
-      "400": {
-        description: "Bad request",
-      },
-      "500": {
-        description: "Internal server error",
       },
     },
   },

@@ -10,8 +10,8 @@ export interface deleteApiKey {
 
 // Create schema
 const deleteApiKeySchema = Joi.object<deleteApiKey>({
-  email: Joi.string().email().required(),
-  apiKey: Joi.string().required(),
+  email: Joi.string().email().required().description("Email of user"),
+  apiKey: Joi.string().required().description("Api key of user to delete"),
 });
 
 // Export module  

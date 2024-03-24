@@ -21,4 +21,11 @@ EXPOSE 5000
 COPY . .
 
 # Start the app
+# For test
+# CMD [ "pnpm", "run", "test"]
+
+# For development
 CMD [ "pnpm", "run", "dev:tsc"]
+
+# For production
+# CMD [ "pnpm", "run", "start"]

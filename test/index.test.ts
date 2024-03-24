@@ -27,35 +27,20 @@ describe("POST /api/v1/api-key", () => {
     apiKey = res.body.data.apiKey;
   });
 
-  test("Should return 400 without email", async () => {
-    const res = await request(app).post("/api/v1/api-key").send({
-      description: "This is a test",
-    });
-    expect(res.headers["content-type"]).toEqual(
-      expect.stringContaining("json")
-    );
-    expect(res.status).toBe(400);
-  });
-
-  test("Should return 400 without description", async () => {
-    const res = await request(app).post("/api/v1/api-key").send({
-      email,
-    });
-    expect(res.headers["content-type"]).toEqual(
-      expect.stringContaining("json")
-    );
-    expect(res.status).toBe(400);
-  });
-
-  test("Should return 400 with repeated email", async () => {
-    const res = await request(app).post("/api/v1/api-key").send({
-      email,
-      description: "This is a test",
-    });
-    expect(res.headers["content-type"]).toEqual(
-      expect.stringContaining("json")
-    );
-    expect(res.status).toBe(400);
+  test("Should return 400 without fields, without email and with repeated email ", async () => {
+    const fields = [
+      {},
+      {description: "This is a test"},
+      {email},
+      {email, description: "This is a test"}
+    ]
+    for (const field of fields) {
+      const res = await request(app).post("/api/v1/api-key").send(field);
+      expect(res.headers["content-type"]).toEqual(
+        expect.stringContaining("json")
+      );
+      expect(res.status).toBe(400);
+    }
   });
 });
 
@@ -72,35 +57,22 @@ describe("POST /api/v1/api-key/refresh", () => {
     expect(res.status).toBe(200);
   });
 
-  test("Should return 400 with email without api key", async () => {
-    const res = await request(app).post("/api/v1/api-key/refresh").send({
-      email: emailWithoutApiKey,
-      apiKey,
-    });
-    expect(res.headers["content-type"]).toEqual(
-      expect.stringContaining("json")
-    );
-    expect(res.status).toBe(400);
-  });
-
-  test("Should return 400 without email", async () => {
-    const res = await request(app).post("/api/v1/api-key/refresh").send({
-      apiKey,
-    });
-    expect(res.headers["content-type"]).toEqual(
-      expect.stringContaining("json")
-    );
-    expect(res.status).toBe(400);
-  });
-
-  test("Should return 400 without apiKey", async () => {
-    const res = await request(app).post("/api/v1/api-key/refresh").send({
-      email,
-    });
-    expect(res.headers["content-type"]).toEqual(
-      expect.stringContaining("json")
-    );
-    expect(res.status).toBe(400);
+  test("Should return 400 without fields, without email, without apiKey and with email without api key", async () => {
+    const fields = [
+      {},
+      { apiKey },
+      { email },
+      { email: emailWithoutApiKey, apiKey },
+    ];
+    for (const field of fields) {
+      const res = await request(app)
+        .post("/api/v1/api-key/refresh")
+        .send(field);
+      expect(res.headers["content-type"]).toEqual(
+        expect.stringContaining("json")
+      );
+      expect(res.status).toBe(400);
+    }
   });
 });
 
@@ -117,34 +89,21 @@ describe("DELETE /api/v1/api-key", () => {
     expect(res.status).toBe(200);
   });
 
-  test("Should return 400 with email without api key", async () => {
-    const res = await request(app).delete("/api/v1/api-key").send({
-      email: emailWithoutApiKey,
-      apiKey,
-    });
-    expect(res.headers["content-type"]).toEqual(
-      expect.stringContaining("json")
-    );
-    expect(res.status).toBe(400);
-  });
-
-  test("Should return 400 without email", async () => {
-    const res = await request(app).delete("/api/v1/api-key").send({
-      apiKey,
-    });
-    expect(res.headers["content-type"]).toEqual(
-      expect.stringContaining("json")
-    );
-    expect(res.status).toBe(400);
-  });
-
-  test("Should return 400 without apiKey", async () => {
-    const res = await request(app).delete("/api/v1/api-key").send({
-      email,
-    });
-    expect(res.headers["content-type"]).toEqual(
-      expect.stringContaining("json")
-    );
-    expect(res.status).toBe(400);
+  test("Should return 400 without fields, without email, without apiKey and with email without api key", async () => {
+    const fields = [
+      {},
+      { apiKey },
+      { email },
+      { email: emailWithoutApiKey, apiKey },
+    ];
+    for (const field of fields) {
+      const res = await request(app)
+        .delete("/api/v1/api-key")
+        .send(field);
+      expect(res.headers["content-type"]).toEqual(
+        expect.stringContaining("json")
+      );
+      expect(res.status).toBe(400);
+    }
   });
 });

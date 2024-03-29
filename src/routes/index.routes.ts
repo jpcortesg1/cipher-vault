@@ -4,6 +4,7 @@ import { Router } from "express";
 
 // Personal
 import apiKeyRouter from "./apiKey.routes";
+import messageRouter from "./message.routes";
 
 // Create main router
 const router = Router();
@@ -15,6 +16,7 @@ router.get("/", (req, res) => {
 
 // Use routes
 router.use("/api-key", apiKeyRouter);
+router.use("/message", messageRouter);
 
 // Export router
 export default router;

@@ -3,21 +3,26 @@
 import { Router } from "express";
 
 // Personal
+// Middlewares
 import { validateSchema } from "../middlewares/schema/schema.middleware";
+import {
+  emailHaveApiKey,
+  existApiKeyWithEmail,
+} from "../middlewares/apiKey/apiKey.middleware";
+
+// Schemas
 import {
   createApiKeySchema,
   refreshApiKeySchema,
   deleteApiKeySchema,
 } from "../schemas/apiKey/apiKey.schema";
+
+// Controllers
 import {
   create,
   refresh,
   destroy,
 } from "../controllers/apiKey/apiKey.controller";
-import {
-  emailHaveApiKey,
-  existApiKeyWithEmail,
-} from "../middlewares/apiKey/apiKey.middleware";
 
 // Create main router
 const apiKeyRouter = Router();

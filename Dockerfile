@@ -20,12 +20,15 @@ EXPOSE 5000
 # Bundle app source
 COPY . .
 
+# Build app
+RUN pnpm run build
+
 # Start the app
 # For test
 # CMD [ "pnpm", "run", "test"]
 
 # For development
-CMD [ "pnpm", "run", "dev:tsc"]
+# CMD [ "pnpm", "run", "dev:tsc"]
 
 # For production
-# CMD [ "pnpm", "run", "start"]
+CMD [ "pnpm", "run", "start"]

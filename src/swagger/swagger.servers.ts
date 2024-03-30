@@ -5,7 +5,7 @@ import { Server } from "swagger-jsdoc";
 // This file have all info of swagger configuration
 const swaggerServers: Server[] = [
   {
-    url: "https://api-chipher-vault.jpcortesg.online/api/v1/",
+    url: "https://api-cipher-vault.jpcortesg.online/api/v1/",
     description: "Production server",
   },
   {

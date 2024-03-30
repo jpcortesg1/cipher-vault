@@ -30,10 +30,10 @@ describe("POST /api/v1/api-key", () => {
   test("Should return 400 without fields, without email and with repeated email ", async () => {
     const fields = [
       {},
-      {description: "This is a test"},
-      {email},
-      {email, description: "This is a test"}
-    ]
+      { description: "This is a test" },
+      { email },
+      { email, description: "This is a test" },
+    ];
     for (const field of fields) {
       const res = await request(app).post("/api/v1/api-key").send(field);
       expect(res.headers["content-type"]).toEqual(
@@ -97,9 +97,7 @@ describe("DELETE /api/v1/api-key", () => {
       { email: emailWithoutApiKey, apiKey },
     ];
     for (const field of fields) {
-      const res = await request(app)
-        .delete("/api/v1/api-key")
-        .send(field);
+      const res = await request(app).delete("/api/v1/api-key").send(field);
       expect(res.headers["content-type"]).toEqual(
         expect.stringContaining("json")
       );

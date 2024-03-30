@@ -1,3 +1,6 @@
+# Pem
+*.pem
+
 # Created by https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,macos,windows,linux,git,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode,macos,windows,linux,git,dotenv
 

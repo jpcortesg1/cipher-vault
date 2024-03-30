@@ -30,7 +30,7 @@ const existApiKeyWithEmail = async (
     req.body = data;
     next();
   } catch (error: any) {
-    console.error(error);
+    console.log(error);
     return res.status(500).json({
       message: "Internal server error",
       status: 500,

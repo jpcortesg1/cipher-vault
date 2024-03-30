@@ -10,6 +10,7 @@ import {
   existMessageByUniqueString,
   messageNeedPassword,
 } from "../middlewares/message/message.middleware";
+import { expiredAtNowTwoMonths } from "../middlewares/date/data.middleware";
 
 // Schemas
 import {
@@ -27,6 +28,7 @@ const messageRouter = Router();
 messageRouter.post(
   "/",
   (req, res, next) => validateSchema(req, res, next, createMessageSchema),
+  expiredAtNowTwoMonths,
   validateApiKey,
   create
 );

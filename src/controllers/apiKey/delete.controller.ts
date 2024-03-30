@@ -25,7 +25,7 @@ const destroy = async (req: Request, res: Response) => {
       })
       .status(200);
   } catch (error: any) {
-    console.error(error);
+    console.log(error);
     res
       .json({
         message: "Internal server error",

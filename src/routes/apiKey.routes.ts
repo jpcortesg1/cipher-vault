@@ -9,6 +9,7 @@ import {
   emailHaveApiKey,
   existApiKeyWithEmail,
 } from "../middlewares/apiKey/apiKey.middleware";
+import { expiredAtNowTwoMonths } from "../middlewares/date/data.middleware";
 
 // Schemas
 import {
@@ -31,6 +32,7 @@ const apiKeyRouter = Router();
 apiKeyRouter.post(
   "/",
   (req, res, next) => validateSchema(req, res, next, createApiKeySchema),
+  expiredAtNowTwoMonths,
   emailHaveApiKey,
   create
 );

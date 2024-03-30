@@ -18,10 +18,9 @@ const createApiKeySchema = Joi.object<CreateApiKey>({
   description: Joi.string()
     .required()
     .description("A brief description of the API key"),
-  expireAt: Joi.date()
-    .min(Date.now())
-    .max(Date.now() + 2 * 30 * 24 * 60 * 60 * 1000)
-    .description("The expiration date and time for the API key"),
+  expireAt: Joi.date().description(
+    "The expiration date and time for the API key"
+  ),
 });
 
 // Export module
